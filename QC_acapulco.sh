@@ -159,12 +159,12 @@ then
 fsleyes ${t1_image} ${acapulco_image} --overlayType label --lut random_big \
 --outline --outlineWidth 3 ${acapulco_image} --overlayType volume --alpha 50 \
 --cmap random &
-sleep 5s
+sleep 2s
 echo
 echo
 echo
 echo "FSLEYES DETACHED FROM TERMINAL"
-sleep 2s
+sleep 1s
 clear
 # ---------- Program workflow to fill QC database -----------------------------
 
@@ -200,7 +200,7 @@ do
   echo
   echo
   echo "Printing Summary..."
-  sleep 2s
+  sleep 1s
   echo
   echo
   echo -e "\e[4;32mSummary:\e[0m"
@@ -266,7 +266,7 @@ done
      clear
      echo " OK, I will open next subject!"
      unset next
-     sleep 1.5
+     sleep 1
      clear
      continue
 
@@ -288,7 +288,7 @@ then
 
 unset confirmation
 echo $confirmation
-sleep 1.5s
+sleep 1s
 clear
 fi
 
