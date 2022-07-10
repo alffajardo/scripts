@@ -15,19 +15,20 @@ then
     echo
 echo -e "******************************************************************************************************************"
 echo "*This program requieres 2 files:"
+
 echo
-echo "* 1: Anatomical raw (unprocessed) T1w files ( e.g ../FS_ya/COC100_sub-001_T1w.nii.gz).
+echo "* 1: Anatomical raw (unprocessed) T1w files ( e.g BASDIR/FS_ya/COC100_sub-001_T1w.nii.gz).
 * 2: ACAPULCO segmentation file in subject native space (e.g COC100_sub-001_T1w_n4_mni_seg_post_inverse.nii.gz)."
 echo
 echo "* Make sure that your working directory is the cohort directory (e.g COC)."
-echo "* Also make sure that your enigma_cerebellum folder at least looks something similar to this:"
-
+echo "* Also make sure that your current directory as follows :"
+echo ""
 echo -e "\e[0;97m
-enigma_cerebellum/
- ├── COC
- |   ├── COC100_sub-001_T1w_n4_mni_seg_post_inverse.nii.gz
- └── FS_ya
-     └── COC100_sub-001_T1w.nii.gz"
+enigma_cerebellum/  <------------------------------------------- (base directory)
+ ├── COC            <------------------------------------------- (Cohort segmentation directory)
+ |   ├── COC100_sub-001_T1w_n4_mni_seg_post_inverse.nii.gz <---- (ACAPULCO mask of cerebellum)
+ └── FS_ya <---------------------------------------------------- (Raw files directory)
+     └── COC100_sub-001_T1w.nii.gz <---------------------------- (Anatomical T1 weighted image)"  
 
  echo -e "\e[0m"
  echo "*****************************************************************************************************************"
@@ -51,15 +52,16 @@ then
 fi
 # -----------Check if csv database exists or create it  -----------------------
 
-mkdir -p QC/
+export basedir=$PWD
+mkdir -p $basedir/QC
 
-if [[ ! -f "QC/QC_${database_name}.csv" ]]
+if [[ ! -f "$basedir/QC/QC_${database_name}.csv" ]]
 then
 echo -e "\e[0;36m+ QC File For This database Doesn't Exist.\n
 ++ I Will Create The file: \e[0\e[1;32mQC/QC_${database_name}.csv \e[0m"
 echo
 echo -e "Database,Subject_ID,Checked,Segmentation Notes,Does mask include whole \
-cerebellum?,Exclude?,Cohort" > QC/QC_${database_name}.csv
+cerebellum?,Exclude?,Cohort" > $basedir/QC/QC_${database_name}.csv
 fi
 
 cohort=$(echo ${database_name:0:3})
@@ -73,7 +75,7 @@ find $PWD -maxdepth 3 -type f -name \
 | cut -d '_' -f 2  | sort > tmp.${database_name}_all_subs.txt
 
 ## list of all done subjects
-cat QC/QC_${database_name}.csv | cut -d ',' -f 2 | tail -n +2 \
+cat $basedir/QC/QC_${database_name}.csv | cut -d ',' -f 2 | tail -n +2 \
 > tmp.${database_name}_done_subs.txt
 
 # To do subjects
@@ -112,11 +114,8 @@ sleep 1s
 
 # -------------------------- Search the necessary images. ---------------------
 
-basedir=$PWD
-cd ..
-t1_image=$( find $PWD  -name "${database_name}*${subj}*_T1w.nii.gz" )
-cd $basedir
-acapulco_image=$(find $PWD -name "${database_name}*${subj}*_T1w_n4_mni_seg_post_inverse.nii.gz")
+t1_image=$(find $basedir -type f -name "${database_name}*${subj}*T1w.nii.gz")
+acapulco_image=$(find $basedir -name "${database_name}*${subj}*_T1w_n4_mni_seg_post_inverse.nii.gz")
 echo
 
 # ------- Evaluate if the files exist ----------------------------------------
