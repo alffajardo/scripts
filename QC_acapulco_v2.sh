@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 
+# Description: This scripts makes easier the task of Quality control of en Enigma Cerebellum project Segmentation with acapulco
+
+# Author: Alfonso Fajardo https://github.com/alffajardo .
+
+
 database_name=$1
 # --------------Assess if the arguments provided exist-------------------------
 
@@ -20,8 +25,7 @@ echo
 echo "* 1: Anatomical raw (unprocessed) T1w files ( e.g BASDIR/FS_ya/COC100_sub-001_T1w.nii.gz).
 * 2: ACAPULCO segmentation file in subject native space (e.g COC100_sub-001_T1w_n4_mni_seg_post_inverse.nii.gz)."
 echo
-echo "* Make sure that your working directory is the cohort directory (e.g COC)."
-echo "* Also make sure that your current directory as follows :"
+echo "* Also make sure that your current directory looks as follows :"
 echo ""
 echo -e "\e[0;97m
 enigma_cerebellum/  <------------------------------------------- (base directory)
