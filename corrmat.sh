@@ -25,7 +25,7 @@ then
 
 
 3dNetCorr -fish_z  -inset $fmri_file  -in_rois $rois_mask  -prefix  $prefix \
- -mask $brain_mask
+ -mask $brain_mask  -push_thru_many_zeros -allow_roi_zeros 
 
 	if [ "$method" = "pearson" ]
 	then
