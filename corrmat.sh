@@ -38,7 +38,7 @@ then
 
 	if [  -f ${prefix}_000.netcc ]
 	then
-	fat_mat2d_plot.py -input  ${prefix}_000.netcc -prefix $prefix -dpi 200 -cbar plasma -cbar_off -xticksoff -yticksoff
+	fat_mat2d_plot.py -input  ${prefix}_000.netcc -prefix $prefix -dpi 200 -cbar plasma -cbar_off -xticks_off -yticks_off
 
    	cat ${prefix}_000.netcc | sed -ne "$min,$max"p | sed 's/ /''/g' | sed 's/  /,/g' | sed   's/	/,/g' | sed 's/4.0000/1.0000/g' > ${prefix}.csv 
 
