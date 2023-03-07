@@ -30,6 +30,12 @@ session2=$(find $work_dir -name "2MNI_${Subject_id}_${tracer}_ses-02*.nii" | cat
 
 mkdir -p $output_dir
 
+if [ ! -f $${work_dir}/${tracer}_years.txt  ] ; then
+
+echo -e "\e[0;31m++ Error:${work_dir}/${tracer}_years.txt NOT FOUND!\e[0m"
+exit 1
+
+fi
 echo -e  "\e[6;37m++ Summary:\e[0m"
 echo -e "\e[3;37m++ Date: $date
 ++ Working directory: $work_dir
@@ -65,7 +71,7 @@ matlabbatch{1}.spm.util.imcalc.input = {
                                         '$session1,1'
                                         '$session2,1'
                                         };
-matlabbatch{1}.spm.util.imcalc.output = 'Rate_change_${Subject_id}_Tau_ref_infcereb';
+matlabbatch{1}.spm.util.imcalc.output = 'Rate_change_${Subject_id}_${tracer}_ref_infcereb';
 matlabbatch{1}.spm.util.imcalc.outdir = {'$output_dir'};
 matlabbatch{1}.spm.util.imcalc.expression = '(i2-i1)/$years';
 matlabbatch{1}.spm.util.imcalc.var = struct('name', {}, 'value', {});
@@ -83,7 +89,7 @@ inputs = cell(0, nrun);
 for crun = 1:nrun
 end
 spm('defaults', 'PET');
-spm_jobman('run', jobs, inputs{:});" > ${output_dir}/job_${suffix_name}.m
+spm_jobman('run', jobs, inputs{:});" > ${output_dir}/job_${tracer}_${suffix_name}.m
 
 
 
@@ -107,7 +113,7 @@ module load VilleneuveLab
 " >  ${output_dir}/${Subject_id}_${tracer}_slope.sbatch
 
 
-echo matlab -batch \"run '('\'${output_dir}/job_${suffix_name}.m\'')'\" >>  ${output_dir}/${Subject_id}_${tracer}_slope.sbatch
+echo matlab -batch \"run '('\'${output_dir}/job_${tracer}_${suffix_name}.m\'')'\" >>  ${output_dir}/${Subject_id}_${tracer}_slope.sbatch
 
 sleep 1s 
 echo
