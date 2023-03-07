@@ -30,7 +30,7 @@ session2=$(find $work_dir -name "2MNI_${Subject_id}_${tracer}_ses-02*.nii" | cat
 
 mkdir -p $output_dir
 
-if [ ! -f $${work_dir}/${tracer}_years.txt  ] ; then
+if  [ ! -f "${work_dir}/${tracer}_years.txt"  ] ; then
 
 echo -e "\e[0;31m++ Error:${work_dir}/${tracer}_years.txt NOT FOUND!\e[0m"
 exit 1
