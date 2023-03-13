@@ -6,7 +6,7 @@
 ### REQUIRED ARGUMENTS :###################
  # $1 = functional dataset ################
  ## $2 = mask with several rois ###########
- ## $output name ##########################
+ ## $3output name ##########################
 ###########################################
 
 library(magrittr)
