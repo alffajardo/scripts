@@ -59,7 +59,7 @@ echo -e "\e[3;37m++ Date: $date
 
 if    [  -z $session1   ]  ||  [  -z $session2 ] ; then
 echo
-echo -e  "\e[1;31m++ Error: Normalized file(s) for subject $Subject_id missing in working directory.\e[0m"
+echo -e  "\e[1;31m++ Error: Normalized file(s) for subject $Subject_id missing in data directory.\e[0m"
 echo
 exit 1
 fi
