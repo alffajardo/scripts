@@ -18,8 +18,10 @@ sleep 1s
 # Compulsory arguments. mak sure this is all correct before running the script
 Subject_id=$1 # Subject ID
 tracer=TAU
-work_dir=/project/ctb-villens/users/afajardo/voxelwise_analysis/Slope_Valentin
-output_dir=/project/ctb-villens/users/afajardo/voxelwise_analysis/Slope_Valentin/all_slopes/${tracer}
+Normalized_data_dir=/project/ctb-villens/projects/PreventAD/pet_normalised_scaled_vlpp/vlpp_TAU_202301_infcereg_tpl-space
+
+work_dir=/project/ctb-villens/projects/PreventAD/pet_longitudinal_slopes
+output_dir=${work_dir}/${tracer}_$(date +%Y_%m_%d)
 
 date=$(date)
 years=$(cat ${work_dir}/${tracer}_years.txt  | grep $Subject_id  | cut -d ' ' -f 2)
