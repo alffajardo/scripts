@@ -29,17 +29,19 @@ years=$(cat ${work_dir}/${tracer}_years.txt  | grep $Subject_id  | cut -d ' ' -f
 # Check for important directories to exist
 mkdir -p $output_dir
 
+# Years file
 if  [ ! -f "${work_dir}/${tracer}_years.txt"  ] ; then
 
 echo -e "\e[0;31m++ Error:${work_dir}/${tracer}_years.txt NOT FOUND!\e[0m"
 exit 1
+fi
 
 # check for the existence of data dir
 if  [ ! -d "${Normalized_data_dir}"  ] ; then
 
 echo -e "\e[0;31m++ Error:${Normalized_data_dir} NOT FOUND!\e[0m"
 exit 1
-
+fi
 session1=$(find $Normalized_data_dir -name "2MNI_${Subject_id}_${tracer}_ses-01*.nii*" | cat | head -n 1)
 session2=$(find $Normalized_data_dir -name "2MNI_${Subject_id}_${tracer}_ses-02*.nii*" | cat | head -n 1)
 
