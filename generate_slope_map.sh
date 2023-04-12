@@ -47,7 +47,6 @@ session2=$(find $Normalized_data_dir -name "2MNI_${Subject_id}_${tracer}_ses-02*
 
 ####
 
-fi
 echo -e  "\e[6;37m++ Summary:\e[0m"
 echo -e "\e[3;37m++ Date: $date
 ++ Working directory: $work_dir
