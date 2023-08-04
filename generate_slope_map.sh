@@ -18,24 +18,35 @@ sleep 1s
 # Compulsory arguments. mak sure this is all correct before running the script
 Subject_id=$1 # Subject ID
 tracer=TAU
-work_dir=/project/ctb-villens/users/afajardo/voxelwise_analysis/Slope_Valentin
-output_dir=/project/ctb-villens/users/afajardo/voxelwise_analysis/Slope_Valentin/all_slopes/${tracer}
+Normalized_data_dir=/project/ctb-villens/projects/PreventAD/pet_normalised_scaled_vlpp
+
+work_dir=/project/ctb-villens/projects/PreventAD/pet_longitudinal_slopes
+output_dir=${work_dir}/${tracer}_$(date +%Y_%m_%d)
 
 date=$(date)
 years=$(cat ${work_dir}/${tracer}_years.txt  | grep $Subject_id  | cut -d ' ' -f 2)
-session1=$(find $work_dir -name "2MNI_${Subject_id}_${tracer}_ses-01*.nii" | cat | head -n 1)
-session2=$(find $work_dir -name "2MNI_${Subject_id}_${tracer}_ses-02*.nii" | cat | head -n 1)
 
-####
-
+# Check for important directories to exist
 mkdir -p $output_dir
 
+# Years file
 if  [ ! -f "${work_dir}/${tracer}_years.txt"  ] ; then
 
 echo -e "\e[0;31m++ Error:${work_dir}/${tracer}_years.txt NOT FOUND!\e[0m"
 exit 1
-
 fi
+
+# check for the existence of data dir
+if  [ ! -d "${Normalized_data_dir}"  ] ; then
+
+echo -e "\e[0;31m++ Error:${Normalized_data_dir} NOT FOUND!\e[0m"
+exit 1
+fi
+session1=$(find $Normalized_data_dir -name "2MNI_${Subject_id}_${tracer}_ses-01*.nii*" | cat | head -n 1)
+session2=$(find $Normalized_data_dir -name "2MNI_${Subject_id}_${tracer}_ses-02*.nii*" | cat | head -n 1)
+
+####
+
 echo -e  "\e[6;37m++ Summary:\e[0m"
 echo -e "\e[3;37m++ Date: $date
 ++ Working directory: $work_dir
@@ -48,7 +59,7 @@ echo -e "\e[3;37m++ Date: $date
 
 if    [  -z $session1   ]  ||  [  -z $session2 ] ; then
 echo
-echo -e  "\e[1;31m++ Error: Normalized file(s) for subject $Subject_id missing in working directory.\e[0m"
+echo -e  "\e[1;31m++ Error: Normalized file(s) for subject $Subject_id missing in data directory.\e[0m"
 echo
 exit 1
 fi
