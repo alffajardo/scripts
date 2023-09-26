@@ -91,7 +91,7 @@ echo "
  FREESURFER DIR: $freesurfer_dir 
 "
 
-echo -e $subject_id\\t$petscan_dir\\t$freesurfer_dir >> participants.tsv
+echo -e $subject_id\\t$freesurfer_dir\\t$petscan_dir >> participants.tsv
 sleep 1s
 echo "++DONE!!"
 
