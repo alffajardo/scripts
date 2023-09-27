@@ -45,7 +45,7 @@ while getopts $optstring options ; do
 
 done
 
-
+echo ""
 
 # ---------------CHECK IF PARTICIPANTS.TSV EXIST------------------------
 
@@ -83,8 +83,7 @@ if  [ ! -d $freesurfer_dir ] || [ -z $freesurfer_dir ]; then
 fi
 
 
-# now append to the variables to the directory
-
+# Now append to the variables to the directory
 echo "
  SUBJECT ID: $subject_id
  PET SCAN DIR: $petscan_dir
