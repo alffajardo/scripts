@@ -25,8 +25,8 @@ echo
 
 cp -v  $PWD/wm_mask_ero_v1.nii.gz ${subject_id}.tmp/wm_mask.nii.gz
 cp -v  mean_anat_brain.nii.gz ${subject_id}.tmp/template.nii.gz
-cp -v  ${subject_id}/anat/${subject_id}_T1w.nii.gz ${subject_id}.tmp
-cp -v ${subject_id}/mask/${subject_id}_roi-brain_mask.nii.gz ${subject_id}.tmp/sub_mask.nii.gz 
+cp -v  ${vlpp_dir}/${subject_id}/anat/${subject_id}_T1w.nii.gz ${subject_id}.tmp
+cp -v  ${vlpp_dir}/${subject_id}/mask/${subject_id}_roi-brain_mask.nii.gz ${subject_id}.tmp/sub_mask.nii.gz 
 
 cd ${subject_id}.tmp
 
