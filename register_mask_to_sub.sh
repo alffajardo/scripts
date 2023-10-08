@@ -1,6 +1,6 @@
 #!/bin/bash
 
-vlpp_dir=/project/rrg-villens/dataset/PreventAD/pet/derivatives/vlpp_preproc_2022/Jan2023/vlpp_nav
+vlpp_dir=/project/rrg-villens/dataset/PreventAD/pet/derivatives/vlpp_preproc_2022/Jan2023/vlpp_tau
 subject_id=$1
 afni_c=/scratch/afajardo/containers/afni.sif
 
