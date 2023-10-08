@@ -1,8 +1,8 @@
 #!/bin/bash
 
-vlpp_dir=/home/alfonso/Desktop/wm_mask
-subject_id=sub-PADMTL0113_TAU
-afni_c=/home/alfonso/Documents/github/psilafni/utils/afni.sif
+vlpp_dir=/project/rrg-villens/dataset/PreventAD/pet/derivatives/vlpp_preproc_2022/Jan2023/vlpp_nav
+subject_id=$1
+afni_c=/scratch/afajardo/containers/afni.sif
 
 # ------- 
 echo  -e "++ Started at $(date)"
