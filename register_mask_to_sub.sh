@@ -100,10 +100,11 @@ applywarp -v \
 fslmaths wm_mask_in_${subject_id} -bin wm_mask_in_${subject_id}
 
 # reorient 2 original space
-singularity exec $afni_c \
+singularity exec -B /projects/rrg-villens/afajardo:/projects/rrg-villens/afajardo \
+ $afni_c \
  3dresample -input wm_mask_in_${subject_id}.nii.gz \
 -master ${subject_id}_T1w.nii.gz \
--prefix  wm_mask_in_s${subject_id}_resampled.nii.gz 
+-prefix  wm_mask_in_s${subject_id}_resampled.nii.gz
 
 #  overwrite mask 
 
