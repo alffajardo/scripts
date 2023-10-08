@@ -101,13 +101,13 @@ fslmaths wm_mask_in_${subject_id} -bin wm_mask_in_${subject_id}
 
 # reorient 2 original space
 singularity exec $afni_c \
- 3dresample -input wm_mask_in_sub-PADMTL0113_TAU.nii.gz \
--master sub-PADMTL0113_TAU_T1w.nii.gz \
--prefix  wm_mask_in_sub-PADMTL0113_TAU_resampled.nii.gz 
+ 3dresample -input wm_mask_in_${subject_id}.nii.gz \
+-master ${subject_id}_T1w.nii.gz \
+-prefix  wm_mask_in_s${subject_id}_resampled.nii.gz 
 
 #  overwrite mask 
 
-mv wm_mask_in_sub-PADMTL0113_TAU_resampled.nii.gz  ../wm_mask_in_sub-PADMTL0113_TAU.nii.gz 
+mv wm_mask_in_sub-${subject_id}.nii.gz  ../wm_mask_in_${subject_id}.nii.gz 
 
 cd ..
 
