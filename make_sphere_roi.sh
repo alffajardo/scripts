@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/bash
 # note, to run this you have to type the following:
 # source make_sphere_roi.sh <input_image.nii.gz> <x y z> <mm>
 # 		<input image> is an image that has the same resolution as the image you want to apply the ROI to.
