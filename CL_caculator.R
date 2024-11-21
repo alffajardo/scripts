@@ -58,10 +58,3 @@ CL2gmsuvr <- function(cl_value = NULL) {
 ## region. Ever wondered the equivalent in Prevent AD SUVRs to WC CLs?
 # This function promises to solve the inquiry.
 
-
-### 
-
-vals <- seq(1,2.9,by = 0.01)
-plot(vals,gmsuvr2CL(vals), type = "l",)
-abline(v = 1.25,col = "red", lty = 2)
-
